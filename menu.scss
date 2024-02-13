@@ -1,0 +1,78 @@
+$colore_primario_menu: black;
+$colore_secondario_menu: white;
+
+* {
+    margin: 0;
+    padding: 0; // azzerano impostazioni predefinite broswer
+}
+
+// inizo stile header
+nav a {
+    text-decoration: none;
+    color: $colore_secondario_menu;// imposto un colore e tolgo le 
+}                                 //decorazioni ai link in header(menu)
+
+nav {
+    font-weight: 600;// anche un font piu grosso
+    ul {
+        display: flex;
+        list-style: none;
+        justify-content: space-between;// elementi messi in linea
+        align-items: center;             // style dell ul nell header
+        background-color: $colore_primario_menu;
+    }
+}
+
+.lavori_cv {
+    display: flex;
+    width: 60%;
+    justify-content: center;
+    li {
+        margin-left: 5%;
+    }                                // stile per lavori e cv che saranno due link di pagina
+    a {
+        color: $colore_secondario_menu;
+    }
+}
+
+.home {
+    display: flex;
+    width: 60px;
+    background-color: $colore_primario_menu;
+    color: $colore_secondario_menu;
+    height: 60px;               // do un altezza al menu
+    align-items: center;                      // style tasto home
+    justify-content: center;
+    li {
+        margin: 5px;
+    }
+}
+
+.modalita {
+    display: flex;
+    height: 30px;
+    width: 80px;
+    background-color: $colore_primario_menu;
+    color: white;                               // style tasto modalita (tema) se esistera
+    align-items: center;
+    justify-content: center;
+}
+
+.menu_sticky {
+    width: 100%;
+    position: fixed;                           // fisso il menu in alto anche in caso di scorrimento
+    border-bottom: 1px solid $colore_primario_menu;
+}
+
+// Stili per il tema chiaro 
+body.light-theme {
+    background-color: $colore_secondario_menu;
+    color: $colore_primario_menu;
+}
+
+//Stili per il tema scuro 
+body.dark-theme {
+    background-color: $colore_primario_menu;
+    color:$colore_secondario_menu;
+}
+

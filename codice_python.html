@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1">
+    <title>BotCripto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="menu.css">
+
+</head>
+
+<body>
+
+
+    <nav id="top">
+        <!-- creo un UL contenente tutte le varie voci del menu -->
+        <ul class="menu_sticky">
+            <!-- creo l icona HOME tramine icona bootstrap -->
+            <li class="home"><a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                        <path
+                            d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+                    </svg></a></li>
+            <!-- creo voci lavori e cv a cui poi andranno collegate due diverse paagine -->
+            <div class="lavori_cv">
+                <li><a href="index.html#lavori">Lavori</a></li>
+                <li><a href="#">CV</a></li>
+            </div>
+            <!-- creo un voce modalita con l idea di poter cambiare tema al sito -->
+            <div id="theme-toggle" class="modalita">
+                <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-brightness-high-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708" />
+                    </svg></li>
+
+            </div>
+        </ul>
+    </nav> <!-- fine menu header-->
+
+
+
+    <pre><!--uso di pre e code per mostrtare il codice con formattazione-->
+    <code>
+import requests                                                         #importo le librerie necessarie
+import schedule
+import json
+from datetime import datetime
+import time
+
+class Bot ():                                                              #creo classe  con parametri fissi
+    def __init__(self):
+        self.url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+
+        self.params = {'start':'1',
+                       'limit':'20',
+                       'convert':'USD'
+                       }
+
+        self.headers = {'Accepts':'application/json',
+                        'X-CMC_PRO_API_KEY':'24353eba-96ff-442f-9d4e-86f4ae504673'
+                        }
+
+    def api_call(self):                                       #chiamata all api ci CMC che restituisce dict 'data'
+        r = requests.get(url=self.url,params=self.params,headers=self.headers).json() #con le info di tutte le cripto
+        return r['data']
+
+impactBot = Bot()
+
+def logic():                                                #logica del programma
+
+    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") #nelle prossime 8 righe creo tutte le liste e variabili che ci
+    currencies = impactBot.api_call()                  #serviranno dopo piu la creazione del file json col nome delle
+    max_volume = 0                                      #della data corrente
+    total_cost_top20 = []
+    total_cost_forVolume = []
+    change_24h = []
+    old_value = []
+    file_json = f'{now}.json'
+
+    for currency in currencies:#queste 4 righe trovano il currency con il volume maggiore nelle 24 ore
+        volume = currency ['quote']['USD']['volume_24h']
+        if volume > max_volume:
+            max_volume = volume
+            max_volume_name = currency['name']
+
+        if currency['quote']['USD']['percent_change_24h']: #aggiungiamo la% di cambio della top20 ad una lista ordinata
+            change_24h.append((currency['name'],currency['quote']['USD']['percent_change_24h']))
+            new_change_24h =sorted(change_24h, key= lambda x:x[1],reverse= True)
+
+        price_crypto = currency['quote']['USD']['price']#aggiungiamo il prezzo delle top 20 ad un altra lista
+        total_cost_top20.append (price_crypto)         #(prezzo di singole unita)
+
+        if currency['quote']['USD']['volume_24h']>= 76000000:#cerchiamo le cripto con volume superiore a 76m
+            crypto76v = currency['quote']['USD']['price']   #aggiungiamo il valore di una singola unita di queste cripto
+            total_cost_forVolume.append(crypto76v)         #le aggiungiamo ad una lista e sommiamo
+            total_cost = sum(total_cost_forVolume)
+
+        price_currency = currency['quote']['USD']['price'] #in queste righe cerchiamo la differenza in % se avessimo
+        percent_change = currency['quote']['USD']['percent_change_24h']#acquistato una singola unita delle top 20 cripto
+        price_yesterday = (price_currency*100)/(percent_change+100)             #il giorno prima ##################
+        old_value.append(price_yesterday)
+    total_yesterday = int(sum(old_value))                 #correzione effettuata sulle due righe piene di asterischi
+    total_today = int(sum(total_cost_top20))
+    percent_request = ((total_today - total_yesterday)/total_yesterday)*100 ###########################################
+
+    #aggingiamo tutti i dati in un dizionario per poi creare il file json
+    dict_info = {'Diffrenza_prezzo_ieri_oggi': round(percent_request,2),'Cripto_top': new_change_24h[:10],
+                'Cripto_Flop':new_change_24h[10:],'Costo_monete_sopra_76m':int(total_cost),'Costo_singola_unita_top20':
+                int(sum(total_cost_top20)),'Cripto_massimo_volume':(max_volume_name,int(max_volume))}
+
+        #creazione file json
+    with open (file_json,'w') as outfile:
+        json.dump(dict_info,outfile,indent=1)
+
+    return
+
+#usiammo la lbreria schedule per ripetre il programma tutti i giorni alle ore 9:00
+start_time = "04:54"
+schedule.every().day.at(start_time).do(logic)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+
+
+    </code>
+</pre>
+
+    <!--script per il cambio tema da chiaro a scuro fatto grazie all aiuto di chatgpt(mai usato js) -->
+    <script>
+        document.getElementById('theme-toggle').addEventListener('click', function () {
+            var body = document.body;
+            // Se il tema corrente è chiaro, cambia al tema scuro, altrimenti, cambia al tema chiaro
+            if (body.classList.contains('light-theme')) {
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+            } else {
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
+            }
+        });
+    </script>
+    <!--fine script-->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

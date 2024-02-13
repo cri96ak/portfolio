@@ -1,0 +1,322 @@
+// tutte le query e il layout inizia a finzionare da 315px con leggeri bug visivi dopo i 350px funziona su smarphonee 
+//tablet sistemare intorno ai 400px e vedere versione pc sui 100px
+
+$colore_primario_menu: black;
+$colore_secondario_menu: white; // piccole variabili sass per cambiare colore al menu velocemente
+
+//mixin per voci lavoro e contattami
+@mixin stile_nero {
+    background-color: $colore_primario_menu;
+    color: $colore_secondario_menu;
+    width: 90%;
+    margin-left: 5%; //stile titolo h2
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+//fine mixin
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;    // font google e font riserva
+}
+
+
+* {
+    margin: 0;
+    padding: 0; // azzerano impostazioni predefinite broswer
+}
+
+// inizo stile header
+nav a {
+    text-decoration: none;
+    color: $colore_secondario_menu; // imposto un colore e tolgo le 
+}
+
+//decorazioni ai link in header(menu)
+
+nav {
+    font-weight: 600; // anche un font piu grosso
+
+    ul {
+        z-index: 1;
+        display: flex;
+        list-style: none;
+        justify-content: space-between; // elementi messi in linea
+        align-items: center; // style dell ul nell header
+        background-color: $colore_primario_menu;
+    }
+}
+
+.lavori_cv {
+    display: flex;
+    width: 60%;
+    justify-content: center;
+
+    li {
+        margin-left: 5%;
+    }
+
+    // stile per lavori e cv che saranno due link di pagina
+    a {
+        color: $colore_secondario_menu;
+    }
+}
+
+.home {
+    display: flex;
+    width: 60px;
+    background-color: $colore_primario_menu;
+    color: $colore_secondario_menu;
+    height: 60px; // do un altezza al menu
+    align-items: center; // style tasto home
+    justify-content: center;
+
+    li {
+        margin: 5px;
+    }
+}
+
+.modalita {
+    display: flex;
+    height: 30px;
+    width: 80px;
+    background-color: $colore_primario_menu;
+    color: white; // style tasto modalita (tema) se esistera
+    align-items: center;
+    justify-content: center;
+}
+
+.menu_sticky {
+    z-index: 1;
+    width: 100%;
+    position: fixed; // fisso il menu in alto anche in caso di scorrimento
+    border-bottom: 1px solid $colore_primario_menu;
+}
+
+// fine stile header
+
+//inizo stile bio e social
+
+header {
+    display: flex; // rendo flex il contenitore delle generalita social e foto per 
+    align-items: center; // dargli uno stile
+    flex-direction: column;
+
+    .immagine_viso {
+        height: 300px;
+        width: 300px;
+        border-radius: 100%; // stile per foto profilo
+        overflow: hidden;
+        object-fit: cover;
+        margin-top: 80px;
+    }
+
+    .testo_descrizione {
+        width: 90%; // spaziatura testo dato senza margin
+        margin-top: 20px; // e con margine per staccarla dalla foto
+        text-align: center; // centro il testo
+    }
+}
+
+.social li {
+    display: inline-block; // centramento, messa in linea piu padding e margin 
+    padding: 20px; // delle icone social
+    margin-top: 10px;
+    justify-content: center;
+
+    img {
+        width: 40px; // ingrandisco le icone social
+    }
+}
+
+// fine stile bio e social
+
+//  inizio sezione form
+
+#contattami {
+    @include stile_nero() // definisco un altra sezione uguale all inizo della sezione lavori
+}
+
+form {
+    width: 90%;
+    display: flex;
+    flex-direction: column; // imposto il fomr a colonna con maargin laterale
+    margin-left: 5%;
+}
+
+.input_email {
+    margin-bottom: 10px; // distacco email e taxtarea
+}
+
+button {
+    width: 50px;
+    background-color: green;
+    color: $colore_secondario_menu;
+    margin: auto;
+    display: block; // forma e posione button per invio mail
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+}
+
+textarea {
+    outline: none;
+    border-radius: 10px; // bordo outline tolto e bordi arrotondati sia per mail che per text area
+}
+
+input {
+    border-radius: 5px;
+    outline: none;
+}
+
+//fine sezione form
+
+.torna_su {
+    width: 50px;
+    margin-bottom: 20px; // stile per tasto(icona)
+    margin-right: 20px; // che rimanda a inizo sito
+    float: right;
+}
+
+//inizio sezione lavori
+
+#lavori {
+    @include stile_nero() // stile h2 inizo lavori
+}
+
+.footer {
+    // stile del footer banda nera con scritta di ringraziamento
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $colore_primario_menu;
+    margin-top: 50px;
+    color: $colore_secondario_menu;
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    height: 100px;
+}
+
+
+
+//Stili per il tema chiaro 
+body.light-theme {
+    background-color: $colore_secondario_menu;
+    color: $colore_primario_menu;                             
+}
+
+//Stili per il tema scuro 
+body.dark-theme {
+    background-color: $colore_primario_menu;
+    color: rgb(183, 183, 183);
+    .menu_sticky{ 
+        border-bottom:2px solid rgb(67, 64, 64);
+    }
+    .footer{
+        border-top: 2px solid rgb(67, 64, 64);
+    }
+    .torna_su{
+        border: 2px solid rgb(67, 64, 64);
+        a{
+            svg{
+                fill: aqua;
+                filter: invert(100%);
+            }
+        }
+    }
+    #lavori,#contattami{
+        margin-top: 10px;
+        background-color: rgb(67, 64, 64);
+        color: rgb(183, 183, 183);
+        }
+    .immagine_viso{
+        border: 2px solid $colore_secondario_menu;
+    }
+    .social{
+        li{
+            background-color: $colore_secondario_menu;
+            border-radius: 10px;
+        }
+    }
+}
+
+
+
+//media query per schermi fino a 600 px di larghezza
+@media(min-width:332px) and (max-width: 600px) {
+    main {
+        z-index: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center; // definisco regolo contenitore dei div 
+        justify-content: center; // in cui andra la lista di progetti
+
+        .python {
+            width: 90%;
+            height: 150px;
+            margin-bottom: 10px;
+            object-fit: cover;
+            overflow: hidden;
+            border-radius: 10px; // di seguito 3 div con immagini e 3 div con testo
+
+            img {
+                position: relative;
+                bottom: 10px; // questi 3 pezzi di codice assicurano la giusta visualizzazione dell immagine su ogni schermo
+            }
+        }
+
+        // che spiegano il progetto.
+        .html {
+            width: 90%;
+            height: 150px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            object-fit: contain;
+            border-radius: 10px;
+
+            img {
+                position: relative;
+                bottom: 40px;
+            }
+        }
+
+        .javascript {
+            width: 90%;
+            height: 150px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            object-fit: contain;
+            border-radius: 10px;
+
+            img {
+                position: relative;
+                bottom: 40px;
+            }
+
+        }
+
+        .testo_py {
+            width: 90%;
+            height: 100px;
+        }
+
+        .testo_html {
+            width: 90%;
+            height: 100px;
+        }
+
+        .testo_js {
+            width: 90%;
+            height: 100px;
+        }
+    }
+}
+
+// fine media query e fine sezione lavori

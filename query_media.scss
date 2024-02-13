@@ -1,0 +1,69 @@
+// mixin stile sezione lavori
+@mixin sezione_lavori {
+    margin-bottom: 10px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+@media(min-width:601px) and (max-width: 885px) {
+
+    // funziona su schermi grandi
+    main {
+        //  da sistemari margini lati, testo e immagini
+        display: flex; // non centrato
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .python,
+    .html,
+    .javascript {
+        @include sezione_lavori();
+        width: 260px;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+        margin-bottom: 10px;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .testo_py,
+    .testo_html,
+    .testo_js {
+        display: flex;
+        flex-direction: column;
+        width: 270px;
+        height: 150px;
+        padding-left: 10px;
+        justify-content: center;
+    }
+
+    form {
+        margin-top: 0px;
+        justify-content: center;
+        align-items: center;
+
+        label,
+        input,
+        textarea {
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            
+        }
+    }
+}
+
+
+    //.python .html .javascript
+    // .testo_py .testo_html .testo_jsss

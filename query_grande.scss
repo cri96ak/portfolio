@@ -1,0 +1,125 @@
+@mixin misure_div {   // misure dei 3 div con testo spiegazione lavori
+    height: 150px;
+    width: 300px;
+    margin-left: 10px;
+    margin-bottom: 35px;
+}
+
+// media query per schermi grandi 
+@media(min-width:886px) {
+    header {
+        display: flex;
+        flex-direction: row; // disposione elementi su riga
+
+        .immagine_viso {
+            width: 250px;
+            height: 250px;
+            margin-bottom: 30px; // misure div img 
+            margin-left: 10px;
+        }
+
+        .testo_descrizione {
+            position: relative;
+            top: 26px;
+            width: 30%; // sistemo il testo in posizione specifica e aumento il font
+            flex: 2;
+            margin: 10px;
+
+            p {
+                font-size: 1.5rem;
+            }
+        }
+
+        .social {
+            position: relative;
+            top: 18px;
+            width: 200px;
+            height: 200px; // social messi di lato in un quadrato
+            align-items: center;
+            justify-content: center;
+            box-sizing: content-box;
+        }
+
+    }
+
+    #lavori {
+        width: 100%;
+        margin: 0px;
+        margin-left: 0px;
+        border-radius: 0%;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    main {display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        
+
+        .html,.python,.javascript{
+            overflow: hidden;
+            object-fit: contain;
+            display: flex;
+            order: 1;
+            width: calc(33.33% - 10px);
+            justify-content: center;
+            height: 200px;
+            border-radius: 10px;
+            margin: 5px;
+            img{
+                border-radius: 20px;
+            }
+        }
+
+        .testo_py {
+            background-color: rgba(19, 2, 255, 0.484);
+            border-radius: 10px;
+            order: 2;
+            
+        }
+
+        .testo_html {
+            background-color: rgba(227, 159, 13, 0.676);
+            border-radius: 10px;
+            order: 3;
+            
+        }
+
+        .testo_js {
+            background-color: rgba(247, 243, 5, 0.676);
+            border-radius: 10px;
+            order: 4;
+        }
+        .testo_py,.testo_html,.testo_js{
+            display: flex;
+            flex-direction: column;
+            width: calc(31.33% - 15px);
+            font-size: 1.5rem;
+            margin: 10px;
+            padding: 5px;
+        }
+    }
+
+    #contattami {
+        width: 100%;
+        margin: 0;
+        border-radius: 0%;
+        margin-bottom: 10px;
+    }
+    
+    #contattami{
+        margin-top: 30px;
+    }
+    form{
+        display:flex;
+        flex-direction: column;
+        width: 40%;
+        margin-left: 30%;
+        font-size: 1.3rem;
+    }
+    button{
+        width:100px;
+        height: 30px;
+    }
+
+}

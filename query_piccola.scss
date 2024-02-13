@@ -1,0 +1,7 @@
+@media (max-width: 331px){
+    .social{                  // media query che sistema in liea le icone social su piccole schermi
+        ul{                   // senza sotto i 331px l ultima icona creava una nuova riga
+            display: flex;
+        }
+    }
+}
