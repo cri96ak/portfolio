@@ -149,9 +149,9 @@ form {
     margin-left: 5%;
 }
 
-.input_email {
-    margin-bottom: 10px; // distacco email e taxtarea
-}
+// .input_email {
+//     margin-bottom: 10px; // distacco email e taxtarea
+// }
 
 button {
     width: 50px;
@@ -173,6 +173,7 @@ textarea {
 input {
     border-radius: 5px;
     outline: none;
+    height: 30px;
 }
 
 //fine sezione form
@@ -209,7 +210,8 @@ input {
 //Stili per il tema chiaro 
 body.light-theme {
     background-color: $colore_secondario_menu;
-    color: $colore_primario_menu;                             
+    color: $colore_primario_menu; 
+                                
 }
 
 //Stili per il tema scuro 
@@ -224,12 +226,6 @@ body.dark-theme {
     }
     .torna_su{
         border: 2px solid rgb(67, 64, 64);
-        a{
-            svg{
-                fill: aqua;
-                filter: invert(100%);
-            }
-        }
     }
     #lavori,#contattami{
         margin-top: 10px;
@@ -243,6 +239,11 @@ body.dark-theme {
         li{
             background-color: $colore_secondario_menu;
             border-radius: 10px;
+        }
+    }
+    .torna_su{
+        a{
+            background: none !important;
         }
     }
 }

@@ -5,10 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME</title>
+
+    <meta name="og:title" property="og:title" content="Dove trovare il migliore web developer.">
+    <meta name="title" content="Dove trovare il migliore web developer.">
+    <meta name="og:description" property="og:description" content="portafolio personale con lavori in vari linguaggi, contattami in un click.">
+    <meta name="description" content="portafolio personale con lavori in vari linguaggi, contattami in un click.">
+    <meta name="og:type"  property="og:type" content="website">
+    <meta name="og:image" property="og:image" content="immagini_progetti/immagine_html.svg" alt="immagine del logo html">
+    <meta name="og:locale" property="og:locale" content="it_IT">
+    <meta name="robots" content="index, follow">
+
     <link rel="icon" href="immagini_favicon/android-chrome.png" type="image/x-icon"> <!--favicon-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"> <!--bootsrap-->
-
-
     <!-- inizo email js-->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
@@ -46,17 +54,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap"
         rel="stylesheet">
 
-
     <!--
     1-favicon                                                                               FATTO
     2-aggiungere tipografia                                                                 FATTO
     3-ottimizzare le immagini                                                               FATTO
-    4-accorciare il codice tramite le potenzialita di sass,mixin ecc                        non lo faro ora ?
+    4-accorciare il codice tramite le potenzialita di sass,mixin ecc                        lo faro?bhoo
     5-aggiungere media query per schermi sotto i 375 px piu le altre (?)                    FATTO
     6-al link del progetto html aggiungere link per repository github                       DA FARE
-    7-tag open graph                                                                        DA FARE
+    7-tag open graph                                                                        FATTO
     8-rimuovere icona o creare tema scuro                                                   FATTO 
-    9-aggiungere email js                                                                   provato ma non va?
+    9-aggiungere email js                                                                   FATTO
     10-caricare progetto su git hub                                                         IN CORSO D OPERA
 -->
 </head>
@@ -143,20 +150,53 @@
     <!--inizio zona form per essere contattato-->
 
     <h2 id="contattami">CONTATTAMI</h2>
-
-    <form id="contact-form" action="#" method="post">
-        <label class="label_email" for="email">Inserisci la tua email:</label>
-        <input class="input_email" type="email" id="email" name="email" required placeholder="esempio@gmail.com">
-
-        <label class="label_text" for="messaggio">Scrivimi il tuo messaggio:</label>
-        <textarea class="input_text" id="messaggio" name="messaggio" rows="4" required
-            placeholder="inserisci qui il tuo messaggio"></textarea>
-
+    <form id="contactForm">
+        <label for="name">Inserisci il tuo nome:</label><br>
+        <input type="text" id="name" name="name" required><br>
+        <label for="email">Inserisci la tua Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        <label for="message">Scrivi il tuo messaggio:</label><br>
+        <textarea id="message" name="message" required></textarea><br>
         <button type="submit">Invia</button>
     </form>
+    <!--fine zona form per essere contattato-->
+
+    <!-- Aggiungi EmailJS per ricevere email fatto tramie guide e video online -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+            (function () {
+                emailjs.init("u3SR7ZNqLgBKCoSj7"); // Sostituisci "user_your_user_id" con il tuo User ID di EmailJS
+            })();
+
+        document.getElementById("contactForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Evita il comportamento predefinito del modulo
+
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var message = document.getElementById("message").value;
+
+
+            // Invia l'email tramite EmailJS
+            emailjs.send("service_fi63lsq", "template_y6bugzo", {  //id servizo e templete di email js
+                name:name,
+                email: email,
+                message: message
+            })
+                .then(function (response) {
+                    console.log("Email inviata con successo:", response);
+                    alert("Grazie! Il tuo messaggio è stato inviato.");
+                    // Puoi aggiungere qui eventuali azioni aggiuntive, come svuotare i campi del modulo
+                }, function (error) {
+                    console.error("Si è verificato un errore nell'invio dell'email:", error);
+                    alert("Si è verificato un errore. Riprova più tardi.");
+                });
+        });
+    </script>
+<!--fine script di js per far funzionare email js-->
+
 
     <!--la riga sotto crea un tasto per tornare all inizio del sito-->
-    <a class="torna_su" href="#top"><img src="icone_social/freccia_in_su.svg"
+     <a class="torna_su" href="#top"><img class="tornasu_nera" src="icone_social/freccia_in_su.svg"
             alt="immagine di una freccia che punta in alto"></a>
 
     <!-- semplice striscia nera usata come footer del sito a scopo puramente visivo-->
@@ -179,6 +219,7 @@
             }
         });
     </script>
+    <!--fine script temi-->
 
     <!-- script per il  funzionamento di bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

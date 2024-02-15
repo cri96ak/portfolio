@@ -35,6 +35,8 @@
     border-radius: 0%;
     padding: 10px;
     margin-bottom: 10px;
+    margin-top: 70px;
+    margin-bottom: 40px;
   }
   main {
     display: flex;
@@ -82,10 +84,10 @@
     width: 100%;
     margin: 0;
     border-radius: 0%;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
   }
   #contattami {
-    margin-top: 30px;
+    margin-top: 70px;
   }
   form {
     display: flex;

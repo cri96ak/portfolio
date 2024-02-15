@@ -116,10 +116,6 @@ form {
   margin-left: 5%;
 }
 
-.input_email {
-  margin-bottom: 10px;
-}
-
 button {
   width: 50px;
   background-color: green;
@@ -140,6 +136,7 @@ textarea {
 input {
   border-radius: 5px;
   outline: none;
+  height: 30px;
 }
 
 .torna_su {
@@ -193,10 +190,6 @@ body.dark-theme .footer {
 body.dark-theme .torna_su {
   border: 2px solid rgb(67, 64, 64);
 }
-body.dark-theme .torna_su a svg {
-  fill: aqua;
-  filter: invert(100%);
-}
 body.dark-theme #lavori, body.dark-theme #contattami {
   margin-top: 10px;
   background-color: rgb(67, 64, 64);
@@ -208,6 +201,9 @@ body.dark-theme .immagine_viso {
 body.dark-theme .social li {
   background-color: white;
   border-radius: 10px;
+}
+body.dark-theme .torna_su a {
+  background: none !important;
 }
 
 @media (min-width: 332px) and (max-width: 600px) {
