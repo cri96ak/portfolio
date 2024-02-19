@@ -120,6 +120,10 @@ header {
         width: 90%; // spaziatura testo dato senza margin
         margin-top: 20px; // e con margine per staccarla dalla foto
         text-align: center; // centro il testo
+        h1{
+            font-weight: 300;
+            font-size: 1.0rem;
+        }
     }
 }
 
@@ -203,6 +207,9 @@ input {
     padding-top: 30px;
     padding-bottom: 30px;
     height: 100px;
+    a{
+        color: $colore_secondario_menu;
+    }
 }
 
 
@@ -223,6 +230,9 @@ body.dark-theme {
     }
     .footer{
         border-top: 2px solid rgb(67, 64, 64);
+        p{
+            color:rgb(183, 183, 183);
+        }
     }
     .torna_su{
         border: 2px solid rgb(67, 64, 64);

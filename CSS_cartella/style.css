@@ -85,6 +85,10 @@ header .testo_descrizione {
   margin-top: 20px;
   text-align: center;
 }
+header .testo_descrizione h1 {
+  font-weight: 300;
+  font-size: 1rem;
+}
 
 .social li {
   display: inline-block;
@@ -171,6 +175,9 @@ input {
   padding-bottom: 30px;
   height: 100px;
 }
+.footer a {
+  color: white;
+}
 
 body.light-theme {
   background-color: white;
@@ -186,6 +193,9 @@ body.dark-theme .menu_sticky {
 }
 body.dark-theme .footer {
   border-top: 2px solid rgb(67, 64, 64);
+}
+body.dark-theme .footer p {
+  color: rgb(183, 183, 183);
 }
 body.dark-theme .torna_su {
   border: 2px solid rgb(67, 64, 64);

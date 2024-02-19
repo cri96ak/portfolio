@@ -4,7 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME</title>
+    <title>CristianAnzivinoHomepage</title>
+
+<!--MESSAGGIO PER IL COACH: ti scrivo qua sperando che leggerai, nel feedback mi vien chiesto di
+aggiungere la seconda pagina, ma gia ce, nella sezione del progetto python (link al codice)si apre una nuova pagina.
+
+MIGLIORIE RICHIESTE:
+-voce dei tag meta description e robot che son gia presenti sotto. Forse ho capito male e intendevi altro.
+-descrizione aggiunta come H1, mancava l h1 che serve per ottimizazione seo
+-codice css/scss aggiunto in cartella
+-creato altra pagina nel footer(mio cv)
+- wrappato codice js in file richiamato dall html
+-->
 
     <meta name="og:title" property="og:title" content="Dove trovare il migliore web developer.">
     <meta name="title" content="Dove trovare il migliore web developer.">
@@ -17,58 +28,20 @@
 
     <link rel="icon" href="immagini_favicon/android-chrome.png" type="image/x-icon"> <!--favicon-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"> <!--bootsrap-->
-    <!-- inizo email js-->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function () {
-            // https://dashboard.emailjs.com/admin/account
-            emailjs.init('u3SR7ZNqLgBKCoSj7');
-        })();
-    </script>
-    <script type="text/javascript">
-        window.onload = function () {
-            document.getElementById('contact-form').addEventListener('submit', function (event) {
-                event.preventDefault();
-                // generate a five digit number for the contact_number variable
-                this.contact_number.value = Math.random() * 100000 | 0;
-                // these IDs from the previous steps
-                emailjs.sendForm('service_fi63lsq ', 'template_y6bugzo', this)
-                    .then(function () {
-                        console.log('SUCCESS!');
-                    }, function (error) {
-                        console.log('FAILED...', error);
-                    });
-            });
-        }
-    </script>
-    <!--fine email js-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script> <!--email_js-->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>                         <!-- email js-->
 
-
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="query_piccola.css">
-    <link rel="stylesheet" href="query_media.css">
-    <link rel="stylesheet" href="query_grande.css"> <!--stili css-->
+    <link rel="stylesheet" href="CSS_cartella/style.css">
+    <link rel="stylesheet" href="CSS_cartella/query_piccola.css">
+    <link rel="stylesheet" href="CSS_cartella/query_media.css">
+    <link rel="stylesheet" href="CSS_cartella/query_grande.css"> <!--stili css-->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--font google-->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap"
         rel="stylesheet">
+    <script src="script.js" defer></script> <!--script cambio tema ed email js--> 
 
-    <!--
-    1-favicon                                                                               FATTO
-    2-aggiungere tipografia                                                                 FATTO
-    3-ottimizzare le immagini                                                               FATTO
-    4-accorciare il codice tramite le potenzialita di sass,mixin ecc                      
-    5-aggiungere media query per schermi sotto i 375 px piu le altre (?)                    FATTO
-    6-al link del progetto html aggiungere link per repository github                       FATTO
-    7-tag open graph                                                                        FATTO
-    8-rimuovere icona o creare tema scuro                                                   FATTO 
-    9-aggiungere email js                                                                   FATTO
-    10-caricare progetto su git hub                                                         FATTO
-    11-miniatura tag open graph da correggere (non visualizzata)
-    12-freccia-su in dark tema renderla visibile
-    13-ingrandire icone home e tema in query per schermi grandi
--->
 </head>
 
 <body>
@@ -103,10 +76,10 @@
     <!-- creo contenuto del sito con foto descrizione e canali social
      l immagine e un svg convertita tramite adobe, le icone dei social sono sempre di boostrap -->
     <header>
-        <div class="immagine_viso"><img src="immagine_volto_mia.svg" alt="selfie di cristian"></div>
+        <div class="immagine_viso"><img src="svg_volto_freccia_bianca/immagine_volto_mia.svg" alt="selfie di cristian"></div>
         <div class="testo_descrizione">
-            <p>Ciao, mi chiamo Cristian Anzivino, sono un full stack developer.<br>
-                Di seguito trovi tutti i link dei miei canali social e alcuni progetti fatti da me.</p>
+            <h1>Ciao, mi chiamo Cristian Anzivino, sono un full stack developer.<br>
+                Di seguito trovi tutti i link dei miei canali social e alcuni progetti fatti da me.</h1>
         </div>
 
         <div class="social">
@@ -165,65 +138,14 @@
     </form>
     <!--fine zona form per essere contattato-->
 
-    <!-- Aggiungo EmailJS per ricevere email fatto tramie guide e video online -->
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-            (function () {
-                emailjs.init("u3SR7ZNqLgBKCoSj7"); 
-            })();
-
-        document.getElementById("contactForm").addEventListener("submit", function (event) {
-            event.preventDefault(); 
-
-            var name = document.getElementById("name").value;
-            var email = document.getElementById("email").value;
-            var message = document.getElementById("message").value;
-
-
-            // Invia l'email tramite EmailJS
-            emailjs.send("service_fi63lsq", "template_y6bugzo", {  //id servizo e templete di email js
-                name:name,
-                email: email,
-                message: message
-            })
-                .then(function (response) {
-                    console.log("Email inviata con successo:", response);
-                    alert("Grazie! Il tuo messaggio è stato inviato.");
-                    
-                }, function (error) {
-                    console.error("Si è verificato un errore nell'invio dell'email:", error);
-                    alert("Si è verificato un errore. Riprova più tardi.");
-                });
-        });
-    </script>
-<!--fine script di js per far funzionare email js-->
-
-
     <!--la riga sotto crea un tasto per tornare all inizio del sito-->
      <a class="torna_su" href="#top"><img class="tornasu_nera" src="icone_social/freccia_in_su.svg"
             alt="immagine di una freccia che punta in alto"></a>
 
     <!-- semplice striscia nera usata come footer del sito a scopo puramente visivo-->
     <div class="footer">
-        <p>Grazie.</p>
+        <a href="cv.html">Il mio cv</a>
     </div>
-
-
-    <!--script per il cambio tema da chiaro a scuro fatto grazie all aiuto di chatgpt(mai usato js) -->
-    <script>
-        document.getElementById('theme-toggle').addEventListener('click', function () {
-            var body = document.body;
-            // Se il tema corrente è chiaro, cambia al tema scuro, altrimenti, cambia al tema chiaro
-            if (body.classList.contains('light-theme')) {
-                body.classList.remove('light-theme');
-                body.classList.add('dark-theme');
-            } else {
-                body.classList.remove('dark-theme');
-                body.classList.add('light-theme');
-            }
-        });
-    </script>
-    <!--fine script temi-->
 
     <!-- script per il  funzionamento di bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
